@@ -1,12 +1,20 @@
 // Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
 // Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
-import express from 'express'
+import express, { response } from 'express'
 
 // Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
 import { Liquid } from 'liquidjs';
 
 // Maak een nieuwe Express applicatie aan, waarin we de server configureren
 const app = express()
+
+// Fetch de data die ik nodig heb
+const apiResponse = await fetch('https://fdnd-agency.directus.app/items/milledoni_products')
+
+// ik krijg antwoord terug
+const apiResponseJSON = await apiResponse.json()
+
+// console.log(apiResponseJSON)
 
 // Maak werken met data uit formulieren iets prettiger
 app.use(express.urlencoded({extended: true}))
@@ -23,8 +31,29 @@ app.engine('liquid', engine.express())
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
-
 console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
+
+app.get('/', async function (request, response) {
+  const parms = {
+    'fields': 'name,image,shop_url,description,shop_name,slug,url,amount',
+    'filter': {
+      'tags': {
+        _icontains: 'moederdag'
+      }
+    }
+  }
+
+  const productResponse = await fetch('https://fdnd-agency.directus.app/items/milledoni_products/?' + new URLSearchParams(parms))
+
+  const productResponseJSON = await productResponse.json()
+
+    response.render('index.liquid', {products: productResponseJSON.data})
+})
+
+app.get('/cadeaus/:categorie', async function(request, response) {
+  (request.path)
+  response.render('cadeaus.liquid', )
+})
 
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
@@ -78,4 +107,8 @@ app.set('port', process.env.PORT || 8000)
 app.listen(app.get('port'), function () {
   // Toon een bericht in de console
   console.log(`Daarna kun je via http://localhost:${app.get('port')}/ jouw interactieve website bekijken.\n\nThe Web is for Everyone. Maak mooie dingen 🙂`)
+})
+
+app.use((req, res, next) =>{
+  res.status(404).send("Sorry can not find page")
 })
