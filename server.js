@@ -96,6 +96,29 @@ app.post('/:id', async function (request, response) {
   response.redirect(303, '/')
 })
 
+app.post('/remove/:id', async function (request, response) {
+  const productId = request.params.id;
+  // 1. koppeling ophalen 
+  const res= await fetch (
+    "https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1?filter[milledoni_products_id][_eq]=" + productId + "&filter[milledoni_users_id][_eq]=60" 
+  )
+
+  const data = await res.json();
+  const relationId = data.data[0]?.id;
+
+  // 2. verwijderen
+  if (relationId){
+    await fetch(
+      `https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1/${relationId}`,
+      {
+        method: "DELETE",
+      }
+    )
+  }
+
+  response.redirect(303, '/wishlist');
+});
+
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
 app.get(…, async function (request, response) {
