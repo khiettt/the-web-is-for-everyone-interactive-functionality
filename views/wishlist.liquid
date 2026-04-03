@@ -1,5 +1,24 @@
+{% render 'partials/head.liquid' %}
+<nav>
+    <img class="logo" src="assets/logoPink.svg" alt="logo">
+
+    <div class="list-logo">
+        <img class="list-line" src="assets/listLine.svg" alt="list">
+    </div>
+    <img class="login-logo" src="assets/loginLogo.svg" alt="login">
+</nav>
+
+<div class="divider"></div>
+
+<h1>Ik zoek een cadeau voor... <span>Mijn Moeder</span></h1>
+<div class="grey-background"></div>
+
+<div class="divider"></div>
+
+
                 <form action="/remove/{{ product.id }}" method="POST">
                     <button>
                         <img alt="Verwijder van lijst" src="assets/cadeauLijst.svg" />
                     </button>
                 </form>
+{% render 'partials/foot.liquid' %}
