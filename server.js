@@ -1,6 +1,6 @@
 // Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
 // Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
-import express, { response } from 'express'
+import express, { request, response } from 'express'
 
 // Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
 import { Liquid } from 'liquidjs';
@@ -17,7 +17,7 @@ const apiResponseJSON = await apiResponse.json()
 // console.log(apiResponseJSON)
 
 // Maak werken met data uit formulieren iets prettiger
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 // Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
 // Bestanden in deze map kunnen dus door de browser gebruikt worden
@@ -31,28 +31,19 @@ app.engine('liquid', engine.express())
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
-console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
-
 app.get('/', async function (request, response) {
   const parms = {
-    'fields': 'name,image,shop_url,description,shop_name,slug,url,amount',
-    'filter': {
-      'tags': {
-        _icontains: 'moederdag'
-      }
-    }
+    'fields': 'name,image,shop_url,description,shop_name,slug,url,amount, id',
+    'filter[tags][_icontains]': 'moederdag'
   }
 
   const productResponse = await fetch('https://fdnd-agency.directus.app/items/milledoni_products/?' + new URLSearchParams(parms))
 
   const productResponseJSON = await productResponse.json()
-
-    response.render('index.liquid', {products: productResponseJSON.data})
+  // console.log(productResponseJSON.data)
+  response.render('index.liquid', { products: productResponseJSON.data })
 })
 
-app.get('/cadeaus/:categorie', async function(request, response) {
-  (request.path)
-  response.render('cadeaus.liquid', )
 
 app.get("/wishlist", async function (req, res) {
   const params = {
@@ -173,6 +164,6 @@ app.listen(app.get('port'), function () {
   console.log(`Daarna kun je via http://localhost:${app.get('port')}/ jouw interactieve website bekijken.\n\nThe Web is for Everyone. Maak mooie dingen 🙂`)
 })
 
-app.use((req, res, next) =>{
+app.use((req, res, next) => {
   res.status(404).send("Sorry can not find page")
 })
