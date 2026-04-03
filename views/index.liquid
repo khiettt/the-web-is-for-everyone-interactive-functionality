@@ -1,6 +1,14 @@
 {% render 'partials/head.liquid' %}
 <header>
+    <nav>
+        <img class="logo" src="assets/logoPink.svg" alt="logo">
+        
+
+        <div class="list-logo">
             <a href="/wishlist"><img class="list-line" src="assets/listLine.svg" alt="list"></a>
+        </div>
+        <img class="login-logo" src="assets/loginLogo.svg" alt="login">
+    </nav>
 </header>
                 <form action="/{{ product.id }}" method="POST">
                     <button>
