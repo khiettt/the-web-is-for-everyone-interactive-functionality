@@ -53,6 +53,47 @@ app.get('/', async function (request, response) {
 app.get('/cadeaus/:categorie', async function(request, response) {
   (request.path)
   response.render('cadeaus.liquid', )
+
+app.get("/wishlist", async function (req, res) {
+  const params = {
+    fields:
+      "liked_products.milledoni_products_id.slug," +
+      "liked_products.milledoni_products_id.image," +
+      "liked_products.milledoni_products_id.name," +
+      "liked_products.milledoni_products_id.amount," +
+      "liked_products.milledoni_products_id.id",
+  };
+ 
+  const productResponse = await fetch(
+    "https://fdnd-agency.directus.app/items/milledoni_users/60/?" +
+      new URLSearchParams(params),
+  );
+ 
+  const productResponseJSON = await productResponse.json();
+  // console.log({ productResponseJSON.data.liked_products})
+  res.render("wishlist.liquid", {
+    likedProducts: productResponseJSON.data.liked_products,
+  });
+});
+
+app.post('/:id', async function (request, response) {
+
+  // console.log(request.body)
+  await fetch("https://fdnd-agency.directus.app/items/milledoni_users_milledoni_products_1",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        milledoni_users_id: 60,
+        milledoni_products_id: request.params.id,
+      }),
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+    }
+  )
+  // Je zou hier data kunnen opslaan, of veranderen, of wat je maar wilt
+  // Er is nog geen afhandeling van een POST, dus stuur de bezoeker terug naar /
+  response.redirect(303, '/')
 })
 
 /*
