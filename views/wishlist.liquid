@@ -17,9 +17,37 @@
 
 <a class="back-btn" href="/">Terug</a>
 
+<main>
+    
+    <img class="filter" src="assets/filter.svg" alt="filter">
+
+    <div class="card-container">
+        {% for item in likedProducts %}
+            {% assign product = item.milledoni_products_id %}
+            <section class="card">
+
                 <form action="/remove/{{ product.id }}" method="POST">
                     <button>
                         <img alt="Verwijder van lijst" src="assets/cadeauLijst.svg" />
                     </button>
                 </form>
+
+                <img class="cadeau-bow" src="assets/cadeau-top.svg" alt="logo bow">
+
+                <img width="185px" class="product-image" src="{{ product.image }}" alt="product">
+
+                <div class="card-line"></div>
+
+                <h2 class="product-name">{{ product.name }}</h2>
+
+                <p class="product-amount">{{ product.amount }}</p>
+
+                <a href="/cadeaus">Bekijk product</a>
+            </section>
+            
+        {% endfor %}
+    </div> 
+
+</main>
+
 {% render 'partials/foot.liquid' %}
