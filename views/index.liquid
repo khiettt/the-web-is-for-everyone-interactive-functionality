@@ -18,9 +18,41 @@
 
 <div class="divider"></div>
 
+<main>
+    
+    <img class="filter" src="assets/filter.svg" alt="filter">
+
+    <div class="card-container">
+        {% for product in products %}
+            
+            <section class="card">
+                <img class="cadeau-bow" src="assets/cadeau-top.svg" alt="logo bow">
+            
+                    {% comment %} <div class="pop-up">
+                        <p>Opgeslagen in lijst</p>
+                    </div> {% endcomment %}
+
                 <form action="/{{ product.id }}" method="POST">
                     <button>
                         <img class="cadeau-list" alt="Voeg toe aan lijst" src="assets/cadeauLijst.svg" />
                     </button>
                 </form>
+
+
+                <img width="185px" class="product-image" src="{{ product.image }}" alt="product">
+
+                <div class="card-line"></div>
+
+                <h2 class="product-name">{{ product.name }}</h2>
+
+                <p class="product-amount">{{ product.amount }}</p>
+
+                <a href="/cadeaus">Bekijk product</a>
+            </section>
+            
+        {% endfor %}
+    </div> 
+
+</main>
+
 {% render 'partials/foot.liquid' %}
