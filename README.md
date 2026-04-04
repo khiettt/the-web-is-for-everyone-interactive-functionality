@@ -32,9 +32,20 @@ Om mijn ontwerpt tot leven te brengen heb ik gebruik gemaakt van HTML, CSS, JS, 
 
 Voor het opslaan van cadeautjes heb ik eerst een [formulier](https://github.com/khiettt/the-web-is-for-everyone-interactive-functionality/blob/b2ce5abd0181eea005fd3f242c460e70d1478a16/views/index.liquid#L35-L39) gemaakt met de data van de prodcuten erin en een POST methode gebruikt. Het gebruiken van `<form>` is het meest betrouwbare element, omdat dit werkt in elke browser, op elk apparaat, overal, voor iedereen. Wanneer je op de knop klikt, wordt er een POST-verzoek gestuurd naar [server.js](https://github.com/khiettt/the-web-is-for-everyone-interactive-functionality/blob/b2ce5abd0181eea005fd3f242c460e70d1478a16/server.js#L70-L88) met het product-ID. De server ontvangt dit ID en stuurt het door naar een API om het product op te slaan in de lijst van de gebruiker. Daarna wordt je teruggestuurd naar de homepage.
 
-**POST=DELETE**
+_**Voorbeeld:**_
 
-Na dat de data is opgeslagen kan je op je wishlist ook cadeautjes verwijderen als je ze niet meer in je lijstje wilt. Daarvoor heb ik met een POST methode gebruikt, die intern DELETE uitvoert. Ook hiervoor heb ik een [formulier](https://github.com/khiettt/the-web-is-for-everyone-interactive-functionality/blob/b96a1b4cea23cfd343a59d5eeb8028bed25a53fc/views/wishlist.liquid#L29-L33) gebruikt met een POST methode....... Wanneer je op de knop klikt, wordt er een POST-verzoek gestuurd naar /remove/:id met het ID van het product. De server zoekt eerst in de database naar de koppeling tussen de gebruiker en dat product. Als deze koppeling bestaat, wordt deze verwijderd via een DELETE-verzoek. Daarna wordt de gebruiker doorgestuurd naar de wishlist-pagina.
+https://github.com/user-attachments/assets/9d556694-9179-4c8d-8189-50bc7964012a
+
+
+
+**Cadeaus verwijderen van je lijst met post**
+
+Na dat de data is opgeslagen kan je op je wishlist ook cadeautjes verwijderen als je ze niet meer in je lijstje wilt. Daarvoor heb ik met een POST methode gebruikt, die intern DELETE uitvoert. Ook hiervoor heb ik een [formulier](https://github.com/khiettt/the-web-is-for-everyone-interactive-functionality/blob/b96a1b4cea23cfd343a59d5eeb8028bed25a53fc/views/wishlist.liquid#L29-L33) gebruikt met een POST methode. Wanneer je op de knop klikt, wordt er een POST-verzoek gestuurd naar [/remove/:id](https://github.com/khiettt/the-web-is-for-everyone-interactive-functionality/blob/f5996c73d11c163e5ad19225da33688f07c5ae3c/server.js#L90-L111) met het ID van het product. De server zoekt eerst in de database naar de koppeling tussen jou en dat product. Als deze koppeling bestaat, wordt deze verwijderd via een DELETE-verzoek. Daarna wordt je doorgestuurd naar de wishlist-pagina.
+
+_**Voorbeeld:**_
+
+https://github.com/user-attachments/assets/a56d92f8-00b1-4d49-be57-c890d7e3b96a
+
 <!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? Misschien heb je iets met NodeJS gedaan, of heb je een framework of library gebruikt? -->
 
 ## Installatie
@@ -49,8 +60,14 @@ Stap 3: Open de _Terminal_ in VSCodium door de toetscombinatie `` ^` `` (control
 Stap 4: Na de installatie is de map `node_modules` aangemaakt, en gevuld met allerlei _packages_. Start de website door in de terminal het comando `npm start` uit te voeren. Als het goed is, komt hier een melding te staan over het opstarten van de server: Application started on http://localhost:8000 — Open deze URL in je browser
 <!-- Bij Instalatie staat hoe een andere developer aan jouw repo kan werken -->
 
-
 ## Bronnen
+[Milledoni's figma designs](https://www.figma.com/design/tHCHwBm3Ujv7wR28VU2BSu/Milledoni?node-id=0-1&p=f&t=69YSfcg8ISRmhixV-0)
+
+[FDND Directus Milledoni Database](https://fdnd-agency.directus.app/items/milledoni_products)
+
+[MDN `<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/form)
+
+[GET vs POST Sprint 7](https://github.com/fdnd-task/connect-your-tribe-squad-page/blob/main/docs/user-generated-content.md#get-vs-post)
 
 ## Licentie
 
