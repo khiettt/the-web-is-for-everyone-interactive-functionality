@@ -30,7 +30,11 @@ Om mijn ontwerpt tot leven te brengen heb ik gebruik gemaakt van HTML, CSS, JS, 
 
 **POST**
 
-Voor het opslaan van cadeautjes heb ik eerst een [formulier](https://github.com/khiettt/the-web-is-for-everyone-interactive-functionality/blob/b2ce5abd0181eea005fd3f242c460e70d1478a16/views/index.liquid#L35-L39) gemaakt met de data van de prodcuten erin en een POST methode gebruikt. Het gebruiken van `<form>` is het meest betrouwbare element, omdat dit werkt in elke browser, op elk apparaat, overal, voor iedereen. Wanneer de gebruiker op de knop klikt, wordt er een POST-verzoek gestuurd met het product-ID. De server ontvangt dit ID en stuurt het door naar een API om het product op te slaan in de lijst van de gebruiker. Daarna wordt de gebruiker teruggestuurd naar de homepage.
+Voor het opslaan van cadeautjes heb ik eerst een [formulier](https://github.com/khiettt/the-web-is-for-everyone-interactive-functionality/blob/b2ce5abd0181eea005fd3f242c460e70d1478a16/views/index.liquid#L35-L39) gemaakt met de data van de prodcuten erin en een POST methode gebruikt. Het gebruiken van `<form>` is het meest betrouwbare element, omdat dit werkt in elke browser, op elk apparaat, overal, voor iedereen. Wanneer er op de knop klikt, wordt er een POST-verzoek gestuurd naar [server.js](https://github.com/khiettt/the-web-is-for-everyone-interactive-functionality/blob/b2ce5abd0181eea005fd3f242c460e70d1478a16/server.js#L70-L88) met het product-ID. De server ontvangt dit ID en stuurt het door naar een API om het product op te slaan in de lijst van de gebruiker. Daarna wordt de gebruiker teruggestuurd naar de homepage.
+
+**POST=DELETE**
+
+Na dat de data is opgeslagen 
 <!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met JS gedaan en hoe? Misschien heb je iets met NodeJS gedaan, of heb je een framework of library gebruikt? -->
 
 ## Installatie
