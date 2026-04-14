@@ -1,6 +1,6 @@
 *{
     box-sizing: border-box;
-}
+} 
 
 
 @font-face {
@@ -72,9 +72,9 @@ span{
         left: 90%;
     }
 }
-.back-btn{
+/* .back-btn{
 
-}
+} */
 
 /* card */
 .card-container{
